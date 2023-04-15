@@ -172,25 +172,81 @@ module.exports =
                         $inc:
                         {
                             "product.$.quantity": parseInt(data.cut)
-                    }
-                    }).then((data)=>
-                    {
+                        }
+                    }).then((data) => {
                         resolve({ data: false });
                     })
             }
         })
     },
-    Remove_cart_product:(proId,userId)=>
-    {
-        return new Promise(async(resolve,reject)=>
-        {
-                await db.get().collection(consts.Cart_base).updateOne({user:objectId(userId)},
+    Remove_cart_product: (proId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            await db.get().collection(consts.Cart_base).updateOne({ user: objectId(userId) },
                 {
-                    $pull:{product:{proid:objectId(proId)}}
-                }).then((data)=>
-                {
+                    $pull: { product: { proid: objectId(proId) } }
+                }).then((data) => {
                     resolve(data);
                 })
         })
+    },
+    Total_amount_from_carted_products: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            var total = await db.get().collection(consts.Cart_base).aggregate([
+                {
+                    $match: { user: objectId(userId) }
+                },
+                {
+                    $unwind: "$product"
+                },
+                {
+                    $project:
+                    {
+                        proid: "$product.proid",
+                        quantity: "$product.quantity"
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from: consts.Shope_products,
+                        localField: "proid",
+                        foreignField: "_id",
+                        as: 'product'
+                    }
+                },
+                {
+                    $project:
+                    {
+                        proid: 1, quantity: 1,
+                        first: { $arrayElemAt: ["$product", 0] },
+                    }
+                },
+                {
+                    $group:
+                    {
+                        _id: null,
+                        totalAmount: { $sum: { $multiply: ["$first.pro.pprice", "$quantity"] } }
+                    }
+                }
+                
+
+
+            ]).toArray()
+            
+            if (total[0])
+            {
+                resolve(total[0].totalAmount)
+            }
+            else
+            {
+                resolve(0)
+            }
+           
+            //console.log(cartItems[0].first);
+            //resolve(cartItems);
+        })
     }
 }
+
+
+// [0].first.pro.pprice

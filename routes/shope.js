@@ -74,6 +74,7 @@ router.get('/addpro', this.verfyshopelogin, (req, res) => {
 })
 
 router.post('/addpro', (req, res) => {
+    req.body.pprice = parseInt(req.body.pprice)
     var state =
     {
         pro: req.body,

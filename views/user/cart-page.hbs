@@ -42,7 +42,7 @@
                 <hr>
             </div>
             <div class="float-right m-5">
-                <h2>Total : 200000 ₹</h2>
+                <h2>Total : {{total}} ₹</h2>
                 <a href="/placeorder" class="btn btn-success" style="width: 100%;">Place Order</a>
             </div>
         </div>
@@ -73,6 +73,7 @@
 
 
                     document.getElementById(proId).innerHTML = q + cute
+                    location.reload()
 
                 }
             }

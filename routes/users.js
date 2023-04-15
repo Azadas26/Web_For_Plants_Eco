@@ -83,7 +83,10 @@ router.get('/addcart', (req, res) => {
 
 router.get('/cart', this.verfyuserlogin, (req, res) => {
   userdb.Get_carted_products_Details(req.session.user._id).then((cartpro) => {
-    res.render('./user/cart-page', { userhd: true, user: req.session.user, cartpro })
+    userdb.Total_amount_from_carted_products(req.session.user._id).then((total)=>
+    {
+     res.render('./user/cart-page', { userhd: true, user: req.session.user, cartpro,total})
+    })
   })
 })
 router.post('/cartqut', (req, res) => {
@@ -110,7 +113,12 @@ router.get('/removecart',(req,res)=>
 
 router.get('/placeorder',(req,res)=>
 {
-  res.render('./user/order-form', { userhd: true, user: req.session.user })
+  userdb.Total_amount_from_carted_products(req.session.user._id).then((total) => {
+
+    res.render('./user/order-form', { userhd: true, user: req.session.user,total})
+  
+  })
+  
 })
 
 module.exports = router;
