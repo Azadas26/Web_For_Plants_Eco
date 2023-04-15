@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5 p-5">
+            <div class="">
+                <h1 class="text-center text-info p-4"><b><i>Your Products Details...</i></b></h1>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Prosuct Price</th>
+                            <th scope="col">Product Discription</th>
+                            <th scope="col">Product image</th>
+                            <th scope="col">Choose Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pros}}
+                        <tr>
+
+                            <td>{{@index}}</td>
+
+                            <td>{{this.pro.pname}}</td>
+                            <td>{{this.pro.pprice}}</td>
+                            <td>{{this.pro.pdiscription}}</td>
+                            <td><img src="/shope-image/{{this._id}}.jpg" alt="" style="width: 200px; height: 200px;">
+                            </td>
+                            <td>
+                                <a href="/shope/editpro?id={{this._id}}" class="btn btn-primary mt-4">Edit Product</a> <br> <br>
+                                <a href="/shope/delete?id={{this._id}}" class="btn btn-danger" onclick="return confirm('are your sure to delete this product???')">Delete Product</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

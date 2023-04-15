@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5 p-5">
+            <div>
+                <table class="table text-cente mt-5">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Product Discription</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Choose Option</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {{#each cartpro}}
+                        <tr>
+                            <td>{{@index}}</td>
+                            <td>{{this.first.pro.pname}}</td>
+                            <td>{{this.first.pro.pprice}}</td>
+                            <td>{{this.first.pro.pdiscription}}</td>
+                            <td>
+                                <button class="btn m-2"
+                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',1)">+</button>
+                                <span id="{{this.proid}}">{{this.quantity}}</span>
+                                <button class="btn m-2"
+                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',-1)">-</button>
+                            </td>
+                            <td><img src="/shope-image/{{this.first._id}}.jpg" alt=""
+                                    style="width: 200px; height: auto;"></td>
+                            <td>
+                                <a href="/removecart?id={{this.proid}}" class="btn btn-outline-danger">Remove</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <hr>
+                <hr>
+            </div>
+            <div class="float-right m-5">
+                <h2>Total : 200000 ₹</h2>
+                <a href="/placeorder" class="btn btn-success" style="width: 100%;">Place Order</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var cartqut = (cartId, proId, Quantity, cute) => {
+
+        var q = parseInt(document.getElementById(proId).innerHTML)
+
+
+        $.ajax({
+            url: '/cartqut',
+            data: {
+                cartid: cartId,
+                proid: proId,
+                quantity: q,
+                cut: parseInt(cute)
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.remove) {
+                    alert("Your Product is remove from the cart")
+                    location.reload()
+                }
+                else {
+
+
+                    document.getElementById(proId).innerHTML = q + cute
+
+                }
+            }
+
+        })
+    }
+</script>

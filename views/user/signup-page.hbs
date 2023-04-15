@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5 p-5">
+            <h1 class="text-center mt-5"><b><i>Create Your Account...</i></b></h1>
+            <form action="/signup" method="post" class="mt-5">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Shope Name</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email">
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Shope Mailaddress</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                        placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                {{#if mess}}
+                <h3 class="text-center text-danger"><b><i>{{mess}}</i></b></h3>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

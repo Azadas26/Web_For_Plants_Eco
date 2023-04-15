@@ -6,6 +6,7 @@ var logger = require('morgan');
 var hbs = require('express-handlebars')
 var db = require('./connection/connect')
 var session = require('express-session')
+var fileUpload = require('express-fileupload')
 
 
 var adminRouter = require('./routes/admin');
@@ -24,6 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(fileUpload())
 app.use(session({ secret: "key", cookie: { maxAge: 600000 } }))
 
 app.use('/admin', adminRouter);

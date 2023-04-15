@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <form action="/shope/addpro" method="post" enctype="multipart/form-data" class="mt-5 p-5">
+               <div class="mt-5">
+                <h1 class="text-center text-primary"><b><i>Enter Product Details...</i></b></h1>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Product Name</label>
+                    <input type="text" name="pname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Artocarpus heterophyllus">
+                
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Price</label>
+                        <input type="number" name="pprice" class="form-control" id="exampleInputPassword1" placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Discription</label>
+                        <input type="text" name="pdiscription" class="form-control" id="exampleInputPassword1" placeholder="Discription"
+                            style="height: 100px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Image</label>
+                        <input type="file" name="pimage" class="form-control" id="exampleInputPassword1" placeholder="Image">
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary mt-2" style="width: 100%;">Submit</button>
+               </div>
+            </form>
+        </div>
+    </div>
+</div>
