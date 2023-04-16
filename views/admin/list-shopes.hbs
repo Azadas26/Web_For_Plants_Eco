@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12 mt-5 p-5">
+            <h2 class="text-center pt-4"><b>Shope Users Details</b></h2>
+            <table class="table mt-5 text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Shope User ID</th>
+                        <th scope="col">Shope Name</th>
+                        <th scope="col">Shope Mail address</th>
+                        <th scope="col">Shope Password <b><i>(Encripted)</i></b></th>
+                        <th scope="col">Remove Products</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each suser}}
+                    <tr>
+                        <td>{{@index}}</td>
+                        <td>{{this._id}}</td>
+                        <td>{{this.sname}}</td>
+                        <td>{{this.semail}}</td>
+                        <td>{{this.spassword}} </td>
+                        <td>
+                            <a href="/admin/removesuser?id={{this._id}}" class="btn btn-outline-danger"
+                                onclick="return confirm('Are you sure to deletee this Shope User???')">Remove</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

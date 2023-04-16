@@ -91,7 +91,7 @@ router.get('/cart', this.verfyuserlogin, (req, res) => {
 })
 router.post('/cartqut', (req, res) => {
   console.log("Hi...")
-  //console.log(req.body);
+  console.log(req.session.user._id);
   userdb.Change_product_Quantity(req.body).then((data) => {
     if(data.data)
     {
@@ -99,7 +99,11 @@ router.post('/cartqut', (req, res) => {
     }
     else
     {
-      res.json({get:true})
+      userdb.Total_amount_from_carted_products(req.session.user._id).then((Total)=>
+      {
+        res.json({ get: true,total:Total})
+      })
+     
     }
   })
 })
@@ -111,7 +115,7 @@ router.get('/removecart',(req,res)=>
    })
 })
 
-router.get('/placeorder',(req,res)=>
+router.get('/placeorder',this.verfyuserlogin,(req,res)=>
 {
   userdb.Total_amount_from_carted_products(req.session.user._id).then((total) => {
 
