@@ -228,25 +228,105 @@ module.exports =
                         totalAmount: { $sum: { $multiply: ["$first.pro.pprice", "$quantity"] } }
                     }
                 }
-                
+
 
 
             ]).toArray()
-            
-            if (total[0])
-            {
+
+            if (total[0]) {
                 resolve(total[0].totalAmount)
             }
-            else
-            {
+            else {
                 resolve(0)
             }
-           
+
             //console.log(cartItems[0].first);
             //resolve(cartItems);
+        })
+    },
+    Get_Product_info_TO_BE_clicked: (Id) => {
+        return new Promise(async (resolve, reject) => {
+            await db.get().collection(consts.Shope_products).findOne({ _id: objectId(Id) }).then((pro) => {
+                resolve(pro)
+            })
+        })
+    },
+    Get_Cart_Products: (userId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(consts.Cart_base).findOne({ user: objectId(userId) }).then((pro) => {
+                resolve(pro)
+            })
+        })
+    },
+    Place_Order_From_user: (info) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(consts.Order_Products).insertOne(info).then((data) => {
+                resolve(data);
+            })
+        })
+    },
+    Remove_All_ProductsFromthe_UserCartAt_theTimeOf_Place_Order: (userId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(consts.Cart_base).removeOne({ user: objectId(userId) }).then((rem) => {
+                resolve(rem)
+            })
+        })
+    },
+    View_Plaeced_Orders: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            var proinfo = await db.get().collection(consts.Order_Products).aggregate([
+                {
+                    $match:
+                    {
+                        userId: objectId(userId)
+                    }
+                },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project:
+                    {
+                        total: 1,
+                        status: 1,
+                        pay: 1,
+                        userId: 1,
+                        date: 1,
+                        items: '$products.proid',
+                        quantity: '$products.quantity'
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from: consts.Shope_products,
+                        localField: 'items',
+                        foreignField: "_id",
+                        as: 'pro'
+                    }
+                },
+                {
+                    $project:
+                    {
+                        total: 1,
+                        status: 1,
+                        pay: 1,
+                        userId: 1,
+                        date: 1,
+                        products:
+                        {
+                            $arrayElemAt: ['$pro', 0]
+                        },
+                        quantity:1
+                    }
+                }
+
+            ]).toArray()
+            console.log(proinfo[0]);
+            resolve(proinfo)
+
         })
     }
 }
 
 
-// [0].first.pro.pprice

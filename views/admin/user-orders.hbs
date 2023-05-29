@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mt-5 p-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Products</th>
+                        <th scope="col">Products Image</th>
+                        <th scope="col">Discription</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col"> Status</th>
+                        <th scope="col">Payment Date</th>
+                        <th scope="col">User(Buy Products)</th>
+                        <th scope="col">User Email</th>
+                        <th scope="col">Shope User</th>
+                        <th scope="col">Shope User email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each pro}}
+                    <tr>
+
+                        <td>{{@index}}</td>
+                        <td>{{this.products.pro.pname}}</td>
+                        <td><img src="/shope-image/{{this.products._id}}.jpg"
+                                style="width: 200px; height: 200px; border-radius: 20px;" alt=""></td>
+                        <td style="max-width: 90px;">{{this.products.pro.pdiscription}}</td>
+                        <td>{{this.products.pro.pprice}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.pay}}</td>
+                        <td>{{this.status}}</td>
+                        <td>{{this.date}}</td>
+                        <td>{{this.users.name}}</td>
+                        <td>{{this.users.email}}</td>
+                        <td>{{this.shops.sname}}</td>
+                        <td>{{this.shops.semail}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

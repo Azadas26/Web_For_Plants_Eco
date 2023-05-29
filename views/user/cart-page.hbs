@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #a5ae56;">
     <div class="row">
         <div class="col-md-12 mt-5 p-5">
             <div>
@@ -17,21 +17,21 @@
                     <tbody class="text-center">
                         {{#each cartpro}}
                         <tr>
-                            <td>{{@index}}</td>
-                            <td>{{this.first.pro.pname}}</td>
-                            <td>{{this.first.pro.pprice}}</td>
-                            <td>{{this.first.pro.pdiscription}}</td>
+                            <td class="pt-5">{{@index}}</td>
+                            <td class="pt-5">{{this.first.pro.pname}}</td>
+                            <td class="pt-5">{{this.first.pro.pprice}}</td>
+                            <td class="p-5">{{this.first.pro.pdiscription}}</td>
                             <td>
                                 <button class="btn m-2"
-                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',1)">+</button>
-                                <span id="{{this.proid}}">{{this.quantity}}</span>
-                                <button class="btn m-2"
+                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',1)">+</button> <br>
+                                <span id="{{this.proid}}">{{this.quantity}}</span> <br>
+                                <button class="btn m-2 mr-2"
                                     onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',-1)">-</button>
                             </td>
                             <td><img src="/shope-image/{{this.first._id}}.jpg" alt=""
-                                    style="width: 200px; height: auto;"></td>
+                                    style="width: 100px; height: auto;" class="mt-3"></td>
                             <td>
-                                <a href="/removecart?id={{this.proid}}" class="btn btn-outline-danger">Remove</a>
+                                <a href="/removecart?id={{this.proid}}" class="btn btn-outline-danger mt-5">Remove</a>
                             </td>
                         </tr>
                         {{/each}}

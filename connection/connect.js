@@ -10,7 +10,7 @@ module.exports =
 {
     Connect_db: () => {
         return new Pronise((resolve, reject) => {
-            var dbname = "ShopePlants"
+            var dbname = "Plants"
             mongoClient.connect("mongodb://127.0.0.1", { useNewUrlParser: true, useUnifiedTopology: true },(err,done)=>
                 {
                     if(err) {

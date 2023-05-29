@@ -6,6 +6,16 @@ var objectId = require('mongodb').ObjectId
 
 module.exports =
 {
+    shope_info_temparrayBase:(data)=>
+    {
+        return new Promise(async (resolve, reject) => {
+          
+            db.get().collection(consts.Temp_shope_Base).insertOne(data).then((data) => {
+                //console.log(data)
+                resolve("Account Created...")
+            })
+        })
+    },
     Do_signup: (data) => {
         return new Promise(async (resolve, reject) => {
             data.spassword = await bcrypt.hash(data.spassword, 10)

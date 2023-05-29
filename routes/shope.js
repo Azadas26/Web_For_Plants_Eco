@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var shopedb = require('../database/shope-base')
+var objectId = require('mongodb').ObjectId
 
 
 module.exports.verfyshopelogin = (req, res, next) => {
@@ -30,7 +31,7 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-    shopedb.Do_signup(req.body).then((data) => {
+    shopedb.shope_info_temparrayBase(req.body).then((data) => {
         signupmesssage = data;
         res.redirect('/shope/signup')
     })
@@ -73,12 +74,14 @@ router.get('/addpro', this.verfyshopelogin, (req, res) => {
     res.render('./shope/add-product', { shopehd: true, suser: req.session.suser })
 })
 
-router.post('/addpro', (req, res) => {
-    req.body.pprice = parseInt(req.body.pprice)
+router.post('/addpro', async(req, res) => {
+    console.log(req.body)
+     req.body.pprice =await parseInt(req.body.pprice)
+    console.log(req.body);
     var state =
     {
         pro: req.body,
-        shopeId: req.session.suser._id
+        shopeId: objectId(req.session.suser._id)
     }
     //console.log(req.body)
     shopedb.Add_products(state).then((Id) => {
@@ -118,7 +121,10 @@ router.get('/editpro', this.verfyshopelogin, (req, res) => {
 
 })
 
-router.post('/editpro', (req, res) => {
+router.post('/editpro', async(req, res) => {
+
+    req.body.pprice = await parseInt(req.body.pprice)
+    console.log(req.body)
 
     shopedb.Update_products_details(req.query.id, req.body).then((data) => {
         res.redirect('/shope/listpro')

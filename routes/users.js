@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userdb = require('../database/user-base')
-
+var objectId = require('mongodb').ObjectId
 
 module.exports.verfyuserlogin = (req, res, next) => {
   if (req.session.ustatus) {
@@ -44,8 +44,8 @@ router.post('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.fail) {
-    res.render('./user/login-page', { userhd: true, message: "Incorrect username or Password" })
-    req.session.failed = false
+    res.render('./user/login-page', { userhd: true, err: "Incorrect username or Password" })
+    req.session.fail = false
   }
   else {
     res.render('./user/login-page', { userhd: true })
@@ -123,6 +123,50 @@ router.get('/placeorder',this.verfyuserlogin,(req,res)=>
   
   })
   
+})
+
+router.get('/proinfo',this.verfyuserlogin,(req,res)=>
+{
+   userdb.Get_Product_info_TO_BE_clicked(req.query.id).then((prod)=>
+   {
+    res.render('./user/one-pro',{userhd:true,prod})
+   })
+})
+
+router.post('/placeorder', this.verfyuserlogin, (req, res) => {
+  
+  req.body.date=new Date();
+  req.body.userId = objectId(req.session.user._id);
+  req.body.status= req.body.pay==='cod'?'placed':'pending'
+
+  userdb.Total_amount_from_carted_products(req.session.user._id).then((total)=>
+  {
+     req.body.total=total
+     userdb.Get_Cart_Products(req.session.user._id).then((products)=>
+     {
+        req.body.products=products.product
+        userdb.Place_Order_From_user(req.body).then(async(data)=>
+        {
+           if(data)
+           {
+            await  userdb.Remove_All_ProductsFromthe_UserCartAt_theTimeOf_Place_Order(req.session.user._id).then((rem)=>
+              {
+              res.render('./user/after-placed', { userhd: true, user: req.session.user })
+              })
+           }
+        })
+        
+     })
+  })
+
+})
+
+router.get('/vieworder',this.verfyuserlogin,(req,res)=>
+{
+    userdb.View_Plaeced_Orders(req.session.user._id).then((info)=>
+    {
+      res.render('./user/view-orders', { userhd: true, user: req.session.user,info})
+    })
 })
 
 module.exports = router;

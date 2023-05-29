@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 mt-5 p-5">
-            <form class="mt-5 p-4">
+            <form class="mt-5 p-4" method="post" action="/placeorder">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
                     <input type="text" name="adsress" class="form-control" id="exampleInputEmail1"
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <input type="radio" name="pay" value="cod">
                         <label for="exampleInputPassword1">Cash Own Delivery</label> <br>
-                        <input type="radio" name="pay" value="online" disabled>
+                        <input type="radio" name="pay" value="Online" disabled>
                         <label for="exampleInputPassword1">Online Payment <i class="bg-warning">(Temporary not
                                     available)</i> </label>
                     </div>

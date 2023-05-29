@@ -1,33 +1,41 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 mt-5 p-5">
-            <h1 class="text-center mt-5"><b><i>Create Your Account...</i></b></h1>
-            <form action="/signup" method="post" class="mt-5">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Shope Name</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Enter email">
 
+<div class="background-images">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 p-5 mt-5">
+               <div class="mt-5">
+                <div class="m-auto"
+                    style="width: 60%; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; border-radius: 20px;">
+                    <form action="/signup" method="post" style="color: #fff;" class=" p-5 text-dark">
+                        <h1 style="text-align: center; font-family: serif;"><b><i>Create Your Account...</i></b></h1>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Name">
+                
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                
+                        <button type="submit" class="btn btn-success mt-3" style="width: 100%; background-color: #054B39;"><b>Submit</b></button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Shope Mailaddress</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                        placeholder="Password">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-                {{#if mess}}
-                <h3 class="text-center text-danger"><b><i>{{mess}}</i></b></h3>
-                {{/if}}
-            </form>
+               </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+

@@ -1,0 +1,37 @@
+<div style="background-color: #253f22;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <div class="mt-5">
+                    <h1 style="color: white; text-shadow: 3px 3px #ffc107; font-family: Arial Black;" class="mt-5 pt-5">
+                        {{prod.pro.pname}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center p-4 mt-5">
+
+
+                <img src="/shope-image/{{prod._id}}.jpg" id="img1"
+                    style="width: 600px; height: 600px;  border-radius: 20px;" class="mt-2 p-2 img-fluid">
+               
+               
+
+
+
+            </div>
+            <div class="col-md-6  p-5" style="color: white;">
+
+                <h3 class="mt-5 pt-5"><B>N</B>ame &emsp;:&emsp;{{prod.pro.pname}}</h3> <br>
+                
+                <h3 class="mt-5">&#8377; &emsp; Price&emsp;:&emsp; {{prod.pro.pprice}} /-</h2>
+
+                <h2 class="text-center mt-5 p-3">Product Discription</h3>
+                <h3 class="mt-5">{{prod.pro.pdiscription}}</h3>
+                
+
+                <a href="/cart" class="btn btn-warning mt-5" style="width: 100%; border-radius: 12px;">Add To Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
