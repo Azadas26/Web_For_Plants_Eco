@@ -141,8 +141,13 @@ router.post('/editpro', async (req, res) => {
 })
 router.get('/userorder', this.verfyshopelogin, (req, res) => {
     shopedb.Get_order_information(req.session.suser._id).then((info) => {
+        console.log(info);
         res.render('./shope/view-orders', { suser: req.session.suser, shopehd: true, info })
     })
+})
+router.get('/about',(req,res)=>
+{
+    res.render('./shope/about-page', { suser: req.session.suser, shopehd: true })
 })
 
 module.exports = router;

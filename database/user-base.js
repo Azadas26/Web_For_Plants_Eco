@@ -324,7 +324,7 @@ module.exports =
                 }
 
             ]).toArray()
-            console.log(proinfo[0]);
+            console.log(proinfo);
             resolve(proinfo)
 
         })

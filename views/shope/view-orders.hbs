@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" id="image">
     <div class="row">
         <div class="col-md-12 mt-5 p-5">
             <table class="table text-center" id="userorders">
@@ -19,12 +19,13 @@
                 </thead>
                 <tbody>
                     {{#each info}}
+                    {{#if pros}}
                     <tr>
 
                         <td>{{@index}}</td>
                         <td>{{this.pros.pro.pname}}</td>
-                        <td><img src="/shope-image/{{this.pros._id}}.jpg" style="width: 200px; height: 200px;"
-                                alt=""></td>
+                        <td><img src="/shope-image/{{this.pros._id}}.jpg" style="width: 200px; height: 200px;" alt="">
+                        </td>
                         <td style="max-width: 90px;">{{this.pros.pro.pdiscription}}</td>
                         <td>{{this.pros.pro.pprice}}</td>
                         <td>{{this.quantity}}</td>
@@ -34,9 +35,22 @@
                         <td>{{this.buyuser.name}}</td>
                         <td>{{this.buyuser.email}}</td>
                     </tr>
+                    {{/if}}
                     {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
+<style>
+    #image {
+        background-image: url('/images/allbg.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right;
+        height: auto;
+    }
+</style>

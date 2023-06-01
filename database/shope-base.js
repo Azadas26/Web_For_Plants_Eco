@@ -191,7 +191,7 @@ module.exports =
                     }
                 }
             ]).toArray()
-            console.log(info[0]);
+           // console.log(info[0]);
             resolve(info)
         })
     }
