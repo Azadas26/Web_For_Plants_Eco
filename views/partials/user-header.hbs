@@ -1,35 +1,48 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="position: fixed;z-index: 2; width: 100%; background-color: #253f22;box-shadow: rgba(238, 237, 237, 0.907) 0px 25px 20px -20px;">
-    <a class="navbar-brand" href="/"><img src="/images/photo_2023-04-21_10-24-13.jpg" style="width: 41px; height: 44px; border-radius: 50%;" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg navbar-light"
+    style="position: fixed;z-index: 2; width: 100%; background: transparent;">
+    <a class="navbar-brand" href="/"><img src="/images/photo_2023-04-21_10-24-13.jpg"
+            style="width: 41px; height: 44px; border-radius: 50%;" alt=""></a>
+    <button style="border-color: green; border: solid;" id="navbar" class="navbar-toggler btn-outline-success"
+        type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link btn btn-success ml-sm-4 text-light" href="#" style="border-radius: 50%; background-color: #054B39;">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link btn btn-outline-success ml-sm-4 " href="/"
+                    style="border-radius: 50%;   background: transparent; border: none; color: black;"
+                    id="home"><b>Home</b> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ml-sm-4 btn btn-success text-light" href="/cart" style="border-radius: 50%; background-color: #054B39;">Cart <span class="badge badge-light" id="ct">{{cut}}</span></a>
+                <a class="nav-link ml-sm-4 btn btn-success" href="/cart"
+                    style="border-radius: 50%; background: transparent; border: none; color: black;"
+                    id="home"><b>Cart</b> <span class="badge" id="ct"
+                        style="background-color: black; color: aliceblue;">{{cut}}</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ml-sm-4 btn btn-success text-light" href="/cart" style="border-radius: 50%; background-color: #054B39;">Orders</a>
+                <a class="nav-link ml-sm-4 btn btn-success" href="/vieworder"
+                    style="border-radius: 50%;  background: transparent; border: none; color: black;"
+                    id="home"><b>Orders</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ml-sm-4 btn btn-success text-light" href="/cart" style="border-radius: 50%; background-color: #054B39;">About</a>
+                <a class="nav-link ml-sm-4 btn btn-success" href="/about"
+                    style="border-radius: 50%;  background: transparent; border: none; color: rgb(11, 11, 11);"
+                    id="home"><b>About</b></a>
             </li>
-            
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
-           
+
             <div class="dropdown">
-                <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-success dropdown-toggle ml-sm-4" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="border: none; color:black;">
                     {{#if user}}
-                    {{user.name}}
+                    <b>{{user.name}}</b>
                     {{else}}
-                    Account
+                    <b>Account</b>
                     {{/if}}
                 </button>
                 {{#if user}}
@@ -51,3 +64,13 @@
 
     </div>
 </nav>
+
+<script>
+    document.getElementById('navbar').addEventListener("click", () => {
+        setTimeout(()=>
+        {
+            var target = document.getElementById('navbarSupportedContent');
+            target.style.backgroundColor = "#3b444b"
+        },1000)
+    })
+</script>

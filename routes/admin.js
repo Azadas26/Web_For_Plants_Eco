@@ -51,7 +51,11 @@ router.get('/lishopes', (req, res) => {
 
 router.get('/removesuser', (req, res) => {
   admindb.Remove_Shope_user(req.query.id).then((data) => {
-    res.redirect('/admin/lishopes')
+    admindb.Remove_Products_At_TheTimeOf_removeSdhopes(req.query.id).then((data)=>
+    {
+      res.redirect('/admin/lishopes')
+    })
+   
   })
 })
 

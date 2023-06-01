@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mt-5 p-5">
-            <table class="table">
+            <table class="table text-center" id="userorders">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -13,33 +13,27 @@
                         <th scope="col">Payment Method</th>
                         <th scope="col"> Status</th>
                         <th scope="col">Payment Date</th>
-                        <th scope="col">User(Buy Products)</th>
-                        <th scope="col">User Email</th>
-                        <th scope="col">Shope User</th>
-                        <th scope="col">Shope User email</th>
+                        <th scope="col">User (Buy Products)</th>
+                        <th scope="col">user Mail(Buy Products)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each pro}}
-                    {{#if this.shops}}
+                    {{#each info}}
                     <tr>
 
                         <td>{{@index}}</td>
-                        <td>{{this.products.pro.pname}}</td>
-                        <td><img src="/shope-image/{{this.products._id}}.jpg"
-                                style="width: 200px; height: 200px; border-radius: 20px;" alt=""></td>
-                        <td style="max-width: 90px;">{{this.products.pro.pdiscription}}</td>
-                        <td>{{this.products.pro.pprice}}</td>
+                        <td>{{this.pros.pro.pname}}</td>
+                        <td><img src="/shope-image/{{this.pros._id}}.jpg" style="width: 200px; height: 200px;"
+                                alt=""></td>
+                        <td style="max-width: 90px;">{{this.pros.pro.pdiscription}}</td>
+                        <td>{{this.pros.pro.pprice}}</td>
                         <td>{{this.quantity}}</td>
                         <td>{{this.pay}}</td>
                         <td>{{this.status}}</td>
                         <td>{{this.date}}</td>
-                        <td>{{this.users.name}}</td>
-                        <td>{{this.users.email}}</td>
-                        <td>{{this.shops.sname}}</td>
-                        <td>{{this.shops.semail}}</td>
+                        <td>{{this.buyuser.name}}</td>
+                        <td>{{this.buyuser.email}}</td>
                     </tr>
-                    {{/if}}
                     {{/each}}
                 </tbody>
             </table>

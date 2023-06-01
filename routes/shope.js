@@ -74,9 +74,9 @@ router.get('/addpro', this.verfyshopelogin, (req, res) => {
     res.render('./shope/add-product', { shopehd: true, suser: req.session.suser })
 })
 
-router.post('/addpro', async(req, res) => {
+router.post('/addpro', async (req, res) => {
     console.log(req.body)
-     req.body.pprice =await parseInt(req.body.pprice)
+    req.body.pprice = await parseInt(req.body.pprice)
     console.log(req.body);
     var state =
     {
@@ -121,16 +121,15 @@ router.get('/editpro', this.verfyshopelogin, (req, res) => {
 
 })
 
-router.post('/editpro', async(req, res) => {
+router.post('/editpro', async (req, res) => {
 
     req.body.pprice = await parseInt(req.body.pprice)
     console.log(req.body)
 
     shopedb.Update_products_details(req.query.id, req.body).then((data) => {
         res.redirect('/shope/listpro')
-        
-        if(req.files.pimage)
-        {
+
+        if (req.files.pimage) {
             var img = req.files.pimage
             img.mv("public/shope-image/" + req.query.id + ".jpg", (err, data) => {
                 if (err) {
@@ -138,6 +137,11 @@ router.post('/editpro', async(req, res) => {
                 }
             })
         }
+    })
+})
+router.get('/userorder', this.verfyshopelogin, (req, res) => {
+    shopedb.Get_order_information(req.session.suser._id).then((info) => {
+        res.render('./shope/view-orders', { suser: req.session.suser, shopehd: true, info })
     })
 })
 

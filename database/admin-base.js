@@ -154,8 +154,18 @@ module.exports =
                     }
                 }
             ]).toArray()
-            console.log(pro[0]);
+            console.log(pro);
             resolve(pro)
+        })
+    },
+    Remove_Products_At_TheTimeOf_removeSdhopes:(shId)=>
+    {
+        return new Promise((resolve,reject)=>
+        {
+            db.get().collection(consts.Shope_products).remove({shopeId:objectId(shId)}).then((data)=>
+            {
+                resolve(data)
+            })
         })
     }
 }

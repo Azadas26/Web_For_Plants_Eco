@@ -1,6 +1,6 @@
-var addcart = (Id) => {
+var addcart = (Id,shopeId) => {
     $.ajax({
-        url: '/addcart?id=' + Id,
+        url: '/addcart?id=' + Id + '&shopeId='+ shopeId,
         method: 'get',
         success: (response) => {
             if (response.status) {

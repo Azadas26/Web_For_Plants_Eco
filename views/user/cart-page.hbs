@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: #a5ae56;">
+<div class="container-fluid" id="image">
     <div class="row">
         <div class="col-md-12 mt-5 p-5">
             <div>
@@ -16,6 +16,7 @@
                     </thead>
                     <tbody class="text-center">
                         {{#each cartpro}}
+                        {{#if this.first}}
                         <tr>
                             <td class="pt-5">{{@index}}</td>
                             <td class="pt-5">{{this.first.pro.pname}}</td>
@@ -23,7 +24,8 @@
                             <td class="p-5">{{this.first.pro.pdiscription}}</td>
                             <td>
                                 <button class="btn m-2"
-                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',1)">+</button> <br>
+                                    onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',1)">+</button>
+                                <br>
                                 <span id="{{this.proid}}">{{this.quantity}}</span> <br>
                                 <button class="btn m-2 mr-2"
                                     onclick="cartqut('{{this._id}}','{{this.proid}}','{{this.quantity}}',-1)">-</button>
@@ -34,6 +36,7 @@
                                 <a href="/removecart?id={{this.proid}}" class="btn btn-outline-danger mt-5">Remove</a>
                             </td>
                         </tr>
+                        {{/if}}
                         {{/each}}
                     </tbody>
                 </table>
@@ -42,8 +45,12 @@
                 <hr>
             </div>
             <div class="float-right m-5">
-                <h2>Total : <span id="total">{{total}}</span> ₹</h2>
-                <a href="/placeorder" class="btn btn-success" style="width: 100%;">Place Order</a>
+                {{#if total}}
+                    <h2>Total : <span id="total">{{total}}</span> ₹</h2>
+                    <a href="/placeorder" class="btn btn-success" style="width: 100%;">Place Order</a>
+                {{else}}
+                    <h2>Total : <span id="total">0</span> ₹</h2>
+                {{/if}}
             </div>
         </div>
     </div>
@@ -73,7 +80,7 @@
 
 
                     document.getElementById(proId).innerHTML = q + cute
-                    document.getElementById('total').innerHTML=response.total
+                    document.getElementById('total').innerHTML = response.total
 
 
                 }
@@ -82,3 +89,14 @@
         })
     }
 </script>
+
+<style>
+     #image
+    {
+        background-image: url('/images/orgback.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+</style>

@@ -67,9 +67,9 @@ module.exports =
     },
     Get_shopes_products: (sId) => {
         return new Promise(async (resolve, reject) => {
-            var pro = await db.get().collection(consts.Shope_products).find({ shopeId: sId }).toArray()
+            var pro = await db.get().collection(consts.Shope_products).find({ shopeId:objectId(sId) }).toArray()
 
-            //console.log(pro);
+            console.log(pro);
             resolve(pro)
         })
     },
@@ -106,5 +106,93 @@ module.exports =
                 })
         })
     },
-    
+    Get_order_information:(shopId)=>
+    {
+        return new Promise(async(resolve,reject)=>
+        {
+            console.log(shopId);
+            var info = await db.get().collection(consts.Order_Products).aggregate([
+                {
+                    $match: { shopeId: objectId(shopId) }
+                },
+                {
+                    $unwind:'$products'
+                },
+                {
+                    $project:
+                    {
+                        adsress:1,
+                        pin:1,
+                        ph:1,
+                        pay:1,
+                        date:1,userId:1,
+                        status:1,
+                        total:1,
+                        shopeId:1,
+                        item:'$products.proid',
+                        quantity:'$products.quantity'
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from:consts.User_base,
+                        localField:'userId',
+                        foreignField: "_id",
+                        as:'buyuser'
+                    }
+                },
+                {
+                    $project:
+                    {
+                        adsress: 1,
+                        pin: 1,
+                        ph: 1,
+                        pay: 1,
+                        date: 1, userId: 1,
+                        status: 1,
+                        total: 1,
+                        shopeId: 1,
+                        item: 1,
+                        quantity: 1,
+                        buyuser:
+                        {
+                            $arrayElemAt: ['$buyuser', 0 ]
+                        }
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from:consts.Shope_products,
+                        localField:'item',
+                        foreignField: "_id",
+                        as: 'pro'
+                    }
+                },
+                {
+                    $project:
+                    {
+                        adsress: 1,
+                        pin: 1,
+                        ph: 1,
+                        pay: 1,
+                        date: 1, userId: 1,
+                        status: 1,
+                        total: 1,
+                        shopeId: 1,
+                        item: 1,
+                        quantity: 1,
+                        buyuser:1,
+                        pros:
+                        {
+                            $arrayElemAt: ['$pro', 0]
+                        }
+                    }
+                }
+            ]).toArray()
+            console.log(info[0]);
+            resolve(info)
+        })
+    }
 }

@@ -1,45 +1,71 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 mt-5 p-5">
-            <form class="mt-5 p-4" method="post" action="/placeorder">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Address</label>
-                    <input type="text" name="adsress" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Enter Your Address">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your Address with anyone
-                        else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Pincode</label>
-                    <input type="number" name="pin" class="form-control" id="exampleInputPassword1"
-                        placeholder="690508">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Phone Number</label>
-                    <input type="number" name="ph" class="form-control" id="exampleInputPassword1"
-                        placeholder="+91 9562XXXX76">
-                </div>
-
-
-
-        </div>
-        <div class="col-md-6 mt-5 p-5">
-            <div class="pl-5 m-4">
-                <div class="mt-5 ml-5 p-4" style="width: 70%; border: solid;">
-                    <h4 class="text-center">Choose Payment Method</h4> <br>
+<div class="samp" id="image">
+    <div class="container-fluid">
+        
+        <div class="row p-5 m-5"
+            style="border-radius: 12px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+          <div class="col-md-12">
+            <h1 class="text-center mb-4"><b>Enter Details</b></h1>
+          </div>
+            <div class="col-md-6 ">
+                <form class="pl-5" method="post" action="/placeorder">
                     <div class="form-group">
-                        <input type="radio" name="pay" value="cod">
-                        <label for="exampleInputPassword1">Cash Own Delivery</label> <br>
-                        <input type="radio" name="pay" value="Online" disabled>
-                        <label for="exampleInputPassword1">Online Payment <i class="bg-warning">(Temporary not
-                                    available)</i> </label>
+                        <label for="exampleInputEmail1">Address</label>
+                        <input type="text" name="adsress" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Your Address">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your Address with anyone
+                            else.</small>
                     </div>
-                    <h4>Total Ammount : {{total}}/-</h4>
-                    <button type="submit" class="btn btn-outline-primary mt-3" style="width: 100%;">Buy
-                        Products</button>
-                    </form>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Pincode</label>
+                        <input type="number" name="pin" class="form-control" id="exampleInputPassword1"
+                            placeholder="690508">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Phone Number</label>
+                        <input type="number" name="ph" class="form-control" id="exampleInputPassword1"
+                            placeholder="+91 9562XXXX76">
+                    </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class=" ">
+                    <div class="m-auto p-4" style="width: 70%; border: solid;">
+                        <h4 class="text-center">Choose Payment Method</h4> <br>
+                        <div class="form-group">
+                            <input type="radio" name="pay" value="cod">
+                            <label for="exampleInputPassword1">Cash Own Delivery</label> <br>
+                            <input type="radio" name="pay" value="Online" disabled>
+                            <label for="exampleInputPassword1">Online Payment <i class="bg-warning">(Temporary not
+                                    available)</i> </label>
+                        </div>
+                        <h4>Total Ammount : {{total}}/-</h4>
+                        <button type="submit" class="btn btn-outline-primary mt-3" style="width: 100%;">Buy
+                            Products</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    .samp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+      #image
+    {
+        background-image: url('/images/orgback.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+</style>

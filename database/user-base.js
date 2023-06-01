@@ -55,10 +55,11 @@ module.exports =
             })
         })
     },
-    Products_Into_Cart: (userId, proId) => {
+    Products_Into_Cart: (userId, proId, shopeId) => {
         return new Promise(async (resolve, reject) => {
             var pro =
             {
+               
                 proid: objectId(proId),
                 quantity: 1
             }
@@ -92,6 +93,7 @@ module.exports =
             else {
                 var state =
                 {
+                    shopeId: objectId(shopeId),
                     user: objectId(userId),
                     product: [pro]
 
@@ -151,7 +153,7 @@ module.exports =
                 },
 
             ]).toArray()
-            //console.log(cartItems)
+            console.log(cartItems)
             //console.log(cartItems[0].first);
             resolve(cartItems);
         })
@@ -317,7 +319,7 @@ module.exports =
                         {
                             $arrayElemAt: ['$pro', 0]
                         },
-                        quantity:1
+                        quantity: 1
                     }
                 }
 

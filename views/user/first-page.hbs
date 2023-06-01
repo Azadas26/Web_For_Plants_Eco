@@ -1,22 +1,20 @@
-<div class="container-fluid" id="image" style="background-color: #253f22;">
+<div class="container-fluid" id="image" >
     <div class="row">
         {{#each prod}}
-        <div class="col-md-3 mt-5">
+        <div class=" col-md-3 ">
             <div class="mt-5 p-5">
-                <div class="card mt-5 m-auto text-center text-dark" style="width: 18rem; border-radius: 20px; background-color: #acb17a; box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;">
+                <div class="card mt-5 m-auto text-center text-dark" id="card" style="width: 18rem; border-radius: 20px; box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;">
                     <a href="/proinfo?id={{this._id}}">
                         <img class="card-img-top p-3 m-auto img-fluid" src="/shope-image/{{this._id}}.jpg" alt="Card image cap"
-                            style="width: 400px; height: 200px;">
+                            style="width: 400px; height: 200px; border-radius: 20px;">
                         <div class="card-body">
                     </a>
-                       <a href="/proinfo" class="text-dark" style="text-decoration: none;">
+                       <a href="/proinfo?id={{this._id}}" style="text-decoration: none; color: black;">
                         <h5 class="card-title">{{this.pro.pname}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's
-                            content.</p>
+                        <p class="card-text">{{this.pro.pdiscription}}</p>
                         <h4>Price : {{this.pro.pprice}}/-</h4>
                        </a>
-                        <button class="btn btn-success" onclick="addcart('{{this._id}}')" style="background-color: #054B39;" id="click">Add To
+                        <button class="btn btn-success" onclick="addcart('{{this._id}}','{{this.shopeId}}')" style="background-color: #054B39;" id="click">Add To
                             Cart</button>
                     </div>
                 </div>
@@ -26,6 +24,29 @@
     </div>
 </div>
 
+<style>
+    #card
+    {
+         background-color: #acb17a;
+         
+    }
+    #card:hover
+    {
+        font-size: 20px;
+         background-color: #c3bebf;
+        color: white;
+        
+        
+    }
+    #image
+    {
+        background-image: url('/images/orgback.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+</style>
 
 
 

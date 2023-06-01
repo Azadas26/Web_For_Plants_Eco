@@ -1,37 +1,45 @@
-<div style="background-color: #253f22;">
+<div style="background-color: #253f22;height: auto;">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 mt-5 text-center">
+        <div class="row pt-5">
+            <div class="col-md-12  text-center">
                 <div class="mt-5">
                     <h1 style="color: white; text-shadow: 3px 3px #ffc107; font-family: Arial Black;" class="mt-5 pt-5">
                         {{prod.pro.pname}}</h1>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 text-center p-4 mt-5">
+        <div class="row  mt-5 p-4">
+            <div class="col-md-6 text-center mb-5 pb-3">
 
 
                 <img src="/shope-image/{{prod._id}}.jpg" id="img1"
                     style="width: 600px; height: 600px;  border-radius: 20px;" class="mt-2 p-2 img-fluid">
-               
-               
+
+
 
 
 
             </div>
-            <div class="col-md-6  p-5" style="color: white;">
+            <div class="col-md-6 " style="color: white;">
 
-                <h3 class="mt-5 pt-5"><B>N</B>ame &emsp;:&emsp;{{prod.pro.pname}}</h3> <br>
-                
+                <h3 class="pt-3"><B>N</B>ame &emsp;:&emsp;{{prod.pro.pname}}</h3> <br>
+
                 <h3 class="mt-5">&#8377; &emsp; Price&emsp;:&emsp; {{prod.pro.pprice}} /-</h2>
 
-                <h2 class="text-center mt-5 p-3">Product Discription</h3>
+                    <h2 class="text-center mt-5 p-3">Product Discription
+                </h3>
                 <h3 class="mt-5">{{prod.pro.pdiscription}}</h3>
-                
 
-                <a href="/cart" class="btn btn-warning mt-5" style="width: 100%; border-radius: 12px;">Add To Cart</a>
+                <button class="btn btn-warning mt-5" id="car" onclick="addcart('{{prod._id}}','{{prod.shopeId}}')"
+                    style="width: 100%; border-radius: 12px;">Add To Cart</button>
+
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #car:active {
+        background-color: red;
+    }
+</style>
