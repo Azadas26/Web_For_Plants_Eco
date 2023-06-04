@@ -8,7 +8,38 @@ module.exports =
 {
     Get_product_list: () => {
         return new Promise(async (resolve, reject) => {
-            var products = await db.get().collection(consts.Shope_products).find().toArray()
+            var products = await db.get().collection(consts.Shope_products).aggregate([
+                {
+                    $project:
+                    {
+                        _id: 1,
+                        pro: 1,
+                        shopeId: 1
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from: consts.Shope_base,
+                        localField: 'shopeId',
+                        foreignField: "_id",
+                        as: 'shops'
+                    }
+                },
+                {
+                    $project:
+                    {
+                        _id: 1,
+                        pro: 1,
+                        shopeId: 1,
+                        shops:
+                        {
+                            $arrayElemAt: ["$shops", 0]
+                        }
+                    }
+                }
+            ]).toArray()
+            console.log(products);
             resolve(products)
         })
     },
@@ -79,7 +110,7 @@ module.exports =
                 {
                     $lookup:
                     {
-                        from: consts.Shope_products,
+                        from: consts.Shope_products_Duplicate,
                         localField: 'items',
                         foreignField: "_id",
                         as: 'pro'
@@ -130,7 +161,7 @@ module.exports =
                 {
                     $lookup:
                     {
-                        from:consts.Shope_base,
+                        from: consts.Shope_base,
                         localField: 'shopId',
                         foreignField: "_id",
                         as: 'shops'
@@ -139,7 +170,7 @@ module.exports =
                 {
                     $project:
                     {
-                        
+
                         total: 1,
                         status: 1,
                         pay: 1,
@@ -148,7 +179,7 @@ module.exports =
                         products: 1,
                         quantity: 1,
                         users: 1,
-                        shops:{
+                        shops: {
                             $arrayElemAt: ['$shops', 0]
                         }
                     }
@@ -158,13 +189,29 @@ module.exports =
             resolve(pro)
         })
     },
-    Remove_Products_At_TheTimeOf_removeSdhopes:(shId)=>
-    {
-        return new Promise((resolve,reject)=>
-        {
-            db.get().collection(consts.Shope_products).remove({shopeId:objectId(shId)}).then((data)=>
-            {
+    Remove_Products_At_TheTimeOf_removeSdhopes: (shId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(consts.Shope_products).remove({ shopeId: objectId(shId) }).then((data) => {
                 resolve(data)
+            })
+        })
+    },
+    Do_admin_LoGIN: (info) => {
+        return new Promise(async (resolve, reject) => {
+            await db.get().collection(consts.Admin_base).findOne({ name: info.aname }).then(async (data) => {
+                if (data) {
+                    await db.get().collection(consts.Admin_base).findOne({ password: info.apassword }).then((info) => {
+                        if (info) {
+                            console.log(info);
+                            resolve({ info, status: true })
+                        }
+                        else {
+                            resolve({ status: false })
+                        }
+                    })
+                } else {
+                    resolve({ status: false })
+                }
             })
         })
     }

@@ -94,6 +94,17 @@ router.post('/addpro', async (req, res) => {
                 }
             })
         }
+        shopedb.Add_Duplicate_Products(state).then(async(Id)=>
+        {
+            var image2 = req.files.pimage
+            if (image2) {
+              await  image2.mv("public/shope-imagedDpe/" + Id + ".jpg", (err, data) => {
+                    if (err) {
+                        console.log("err", err);
+                    }
+                })
+            }
+        })
         res.redirect('/shope/addpro')
     })
 })

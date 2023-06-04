@@ -11,6 +11,8 @@
                             <th scope="col">Price</th>
                             <th scope="col">Product Discription</th>
                             <th scope="col">Product Image</th>
+                            <th scope="col">Shop Name</th>
+                            <th scope="col">Shop Mail Address</th>
                             <th scope="col">Remove Products</th>
                         </tr>
                     </thead>
@@ -22,6 +24,8 @@
                                 <td>{{this.pro.pprice}}</td>
                                 <td>{{this.pro.pdiscription}}</td>
                                 <td><img src="/shope-image/{{this._id}}.jpg" style="width: 200px;" height="200px" alt=""></td>
+                                <td>{{this.shops.sname}}</td>
+                                <td>{{this.shops.semail}}</td>
                                 <td>
                                     <a href="/admin/removepro?id={{this._id}}" class="btn btn-outline-danger mt-5" onclick="return confirm('Are you sure to deletee this product???')">Remove</a>
                                 </td>

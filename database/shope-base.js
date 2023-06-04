@@ -65,6 +65,16 @@ module.exports =
             })
         })
     },
+    Add_Duplicate_Products:(products)=>
+    {
+       return new Promise(async(resolve,reject)=>
+       {
+           await db.get().collection(consts.Shope_products_Duplicate).insertOne(products).then((data) => {
+               //console.log(data.ops[0]._id)
+               resolve(data.ops[0]._id)
+           })
+       })
+    },
     Get_shopes_products: (sId) => {
         return new Promise(async (resolve, reject) => {
             var pro = await db.get().collection(consts.Shope_products).find({ shopeId:objectId(sId) }).toArray()
@@ -164,7 +174,7 @@ module.exports =
                 {
                     $lookup:
                     {
-                        from:consts.Shope_products,
+                        from:consts.Shope_products_Duplicate,
                         localField:'item',
                         foreignField: "_id",
                         as: 'pro'

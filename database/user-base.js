@@ -301,7 +301,7 @@ module.exports =
                 {
                     $lookup:
                     {
-                        from: consts.Shope_products,
+                        from: consts.Shope_products_Duplicate,
                         localField: 'items',
                         foreignField: "_id",
                         as: 'pro'
