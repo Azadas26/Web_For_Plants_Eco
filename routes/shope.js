@@ -48,7 +48,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    //console.log(req.body)
+    console.log(req.body)
     shopedb.Do_login(req.body).then((state) => {
         if (state.status) {
 

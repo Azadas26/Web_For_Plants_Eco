@@ -315,11 +315,11 @@ module.exports =
                         pay: 1,
                         userId: 1,
                         date: 1,
+                        quantity: 1,
                         products:
                         {
                             $arrayElemAt: ['$pro', 0]
                         },
-                        quantity: 1
                     }
                 }
 

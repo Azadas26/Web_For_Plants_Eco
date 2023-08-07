@@ -53,7 +53,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  //console.log(req.body)
+  console.log(req.body)
   userdb.Do_login(req.body).then((state) => {
     if (state.status) {
 
@@ -160,7 +160,9 @@ router.post('/placeorder', this.verfyuserlogin, (req, res) => {
 })
 
 router.get('/vieworder', this.verfyuserlogin, (req, res) => {
+  console.log("Hi hellooooo");
   userdb.View_Plaeced_Orders(req.session.user._id).then((info) => {
+   // console.log(info);
     res.render('./user/view-orders', { userhd: true, user: req.session.user, info })
   })
 })

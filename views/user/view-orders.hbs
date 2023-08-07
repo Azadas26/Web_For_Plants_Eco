@@ -7,7 +7,6 @@
                         <th scope="col">No</th>
                         <th scope="col">Products</th>
                         <th scope="col">Products Image</th>
-                        <th scope="col">Discription</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Payment Method</th>
@@ -18,19 +17,19 @@
                 <tbody>
                     {{#each info}}
                     {{#if products}}
-                        <tr>
-                        
-                            <td>{{@index}}</td>
-                            <td>{{this.products.pro.pname}}</td>
-                            <td><img src="/shope-image/{{this.products._id}}.jpg" style="width: 200px; height: 200px;" alt=""></td>
-                            <td style="max-width: 90px;">{{this.products.pro.pdiscription}}</td>
-                            <td>{{this.products.pro.pprice}}</td>
-                            <td>{{this.quantity}}</td>
-                            <td>{{this.pay}}</td>
-                            <td>{{this.status}}</td>
-                            <td>{{this.date}}</td>
-                        
-                        </tr>
+                    <tr>
+
+                        <td>{{@index}}</td>
+                        <td>{{this.products.pro.pname}}</td>
+                        <td><img src="/shope-image/{{this.products._id}}.jpg" style="width: 200px; height: 200px;"
+                                alt=""></td>
+                        <td>{{this.products.pro.pprice}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.pay}}</td>
+                        <td>{{this.status}}</td>
+                        <td>{{this.date}}</td>
+
+                    </tr>
                     {{/if}}
                     {{/each}}
                 </tbody>
@@ -40,8 +39,7 @@
 </div>
 
 <style>
-     #image
-    {
+    #image {
         background-image: url('/images/orgback.jpg');
         background-attachment: fixed;
         background-size: cover;
