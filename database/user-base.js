@@ -328,6 +328,16 @@ module.exports =
             resolve(proinfo)
 
         })
+    },
+    To_check_Wetcher_The_Email_Exist_or_Not: (email)=>
+    {
+        return new Promise(async(resolve,reject)=>
+        {
+            await db.get().collection(consts.User_base).findOne({email:email}).then((data)=>
+            {
+                resolve(data)
+            })
+        })
     }
 }
 

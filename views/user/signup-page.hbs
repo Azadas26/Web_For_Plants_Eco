@@ -9,6 +9,9 @@
                     <form action="/signup" method="post" style="color: #fff;" class=" p-5 text-dark">
                         <h1 style="text-align: center; font-family: serif;"><b><i>Create Your Account...</i></b></h1>
                         <div class="form-group">
+                             {{#if err}}
+                                <p class="mt-2" style="color: red;"><i>{{err}}</i></p>
+                                {{/if}}
                             <label for="exampleInputEmail1">Name</label>
                             <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="Name">
