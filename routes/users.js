@@ -4,7 +4,7 @@ var userdb = require("../database/user-base");
 var objectId = require("mongodb").ObjectId;
 
 module.exports.verfyuserlogin = (req, res, next) => {
-  if (req.session.ustatus) {
+  if (req.session.user) {
     next();
   } else {
     res.redirect("/login");
@@ -13,7 +13,7 @@ module.exports.verfyuserlogin = (req, res, next) => {
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   userdb.Get_all_Products().then((prod) => {
-    if (req.session.ustatus) {
+    if (req.session.user.ustatus) {
       console.log(prod);
       userdb.Get_cart_count(req.session.user._id).then((cunt) => {
         console.log(cunt);
@@ -79,8 +79,9 @@ router.post("/login", (req, res) => {
   console.log(req.body);
   userdb.Do_login(req.body).then((state) => {
     if (state.status) {
-      req.session.ustatus = true;
       req.session.user = state.user;
+      console.log(req.session.user);
+      req.session.user.ustatus = true;
       res.redirect("/");
     } else {
       req.session.fail = true;
@@ -89,7 +90,7 @@ router.post("/login", (req, res) => {
   });
 });
 router.get("/logout", (req, res) => {
-  req.session.destroy();
+  req.session.user=null
   res.redirect("/login");
 });
 

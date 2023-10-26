@@ -112,7 +112,7 @@ router.get('/userorders', verfyadmin,(req,res)=>
 })
 router.get('/logout',(req,res)=>
 {
-   req.session.destroy()
+   req.session.admin=null
    res.redirect('/admin/')
 })
 router.get('/listpro',(req,res)=>

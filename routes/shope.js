@@ -4,7 +4,7 @@ var shopedb = require("../database/shope-base");
 var objectId = require("mongodb").ObjectId;
 
 module.exports.verfyshopelogin = (req, res, next) => {
-  if (req.session.status) {
+  if (req.session.suser) {
     next();
   } else {
     res.redirect("/shope/login");
@@ -13,7 +13,7 @@ module.exports.verfyshopelogin = (req, res, next) => {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  if (req.session.status) {
+  if (req.session.suser) {
     res.render("./shope/first-page", {
       shopehd: true,
       suser: req.session.suser,
@@ -53,8 +53,8 @@ router.post("/login", (req, res) => {
   console.log(req.body);
   shopedb.Do_login(req.body).then((state) => {
     if (state.status) {
-      req.session.status = true;
       req.session.suser = state.user;
+      req.session.suser.status = true;
       res.redirect("/shope");
     } else {
       req.session.failed = true;
@@ -63,7 +63,7 @@ router.post("/login", (req, res) => {
   });
 });
 router.get("/logout", (req, res) => {
-  req.session.destroy();
+  req.session.suser = null
   res.redirect("/shope/login");
 });
 
